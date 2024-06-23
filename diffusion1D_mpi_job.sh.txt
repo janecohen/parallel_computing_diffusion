@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH --qos=privileged
+#SBATCH --nodes=1
+#SBATCH --ntasks=8
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=1g
+#SBATCH --time=00:300:00
+#SBATCH --output=myjob.out
+
+module load StdEnv/2020
+source venv/bin/activate
+pip install matplotlib
+pip install numpy
+mpirun -n $SLURM_NTASKS python ./diffusion-v4.py
